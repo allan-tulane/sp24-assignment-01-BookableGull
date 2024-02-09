@@ -5,12 +5,28 @@ See assignment-01.pdf for details.
 # no imports needed.
 
 def foo(x):
+    if x == 0:
+        return 0
+    else:
+        return x + foo(x - 1)
     ### TODO
-    pass
+        pass
 
 def longest_run(mylist, key):
+    sequence_amount = 0
+    max_sequence = 0
+    for number in mylist:
+        if number == key and sequence_amount == 0:
+            sequence_amount = 1
+        elif number == key and sequence_amount > 0:
+            sequence_amount += 1
+        else:
+            sequence_amount = 0
+        if sequence_amount > max_sequence:
+            max_sequence = sequence_amount
+    return max_sequence
     ### TODO
-    pass
+pass
 
 
 class Result:
@@ -37,8 +53,23 @@ def to_value(v):
         return int(v)
         
 def longest_run_recursive(mylist, key):
+    max_size = 0
+    sequence_size = 0
+    if len(mylist) == 1:
+        return max_size
+    else:
+        if mylist == key and sequence_size == 0:
+            sequence_size = 1
+        elif mylist == key and sequence_size > 0:
+            sequence_size += 1
+        else:
+            sequence_size = 0
+        if sequence_size > max_size:
+            max_size = sequence_size
+        return longest_run_recursive(mylist[1:], key)
+       
     ### TODO
-    pass
+        pass
 
 
 
