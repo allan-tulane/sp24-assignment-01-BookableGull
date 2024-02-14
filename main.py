@@ -53,23 +53,20 @@ def to_value(v):
         return int(v)
         
 def longest_run_recursive(mylist, key):
-    max_size = 0
-    sequence_size = 0
-    if len(mylist) == 1:
-        return max_size
-    else:
-        if mylist == key and sequence_size == 0:
-            sequence_size = 1
-        elif mylist == key and sequence_size > 0:
-            sequence_size += 1
+    def _find_longest_run(mylist, key, current_streak, max_streak):
+        if not mylist:
+            return max_streak
+        if mylist[0] == key:
+            current_streak += 1
+            max_streak = max(max_streak, current_streak)
         else:
-            sequence_size = 0
-        if sequence_size > max_size:
-            max_size = sequence_size
-        return longest_run_recursive(mylist[1:], key)
-       
+            current_streak = 0
+        return _find_longest_run(mylist[1:], key, current_streak, max_streak)
+
+    return _find_longest_run(mylist, key, 0, 0)
+
     ### TODO
-        pass
+    pass
 
 
 
